@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WhatsApp Checkout - Kain & Kasa</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #111;
+            color: #fff;
+        }
+        .test-section {
+            background: #181818;
+            border: 1px solid #222;
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #c9a96e;
+            margin-bottom: 16px;
+        }
+        button {
+            background: #25D366;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 8px 8px 8px 0;
+        }
+        button:hover {
+            background: #128C7E;
+        }
+        pre {
+            background: #0a0a0a;
+            padding: 16px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+            white-space: pre-wrap;
+            border: 1px solid #333;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test WhatsApp Checkout - Kain & Kasa</h1>
+
+    <div class="test-section">
+        <h2>Test 1: Add Items to Cart</h2>
+        <p>Add sample products to localStorage cart</p>
+        <button onclick="addSampleCart()">Add Sample Cart Items</button>
+        <button onclick="clearCart()">Clear Cart</button>
+        <div id="cart-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: View Cart Contents</h2>
+        <p>Check what's in localStorage</p>
+        <button onclick="viewCart()">View Cart</button>
+        <pre id="cart-view">Cart is empty</pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Generate WhatsApp Message</h2>
+        <p>Preview the exact message that will be sent</p>
+        <button onclick="previewMessage()">Preview Message</button>
+        <pre id="message-preview"></pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Send WhatsApp Order</h2>
+        <p>Open WhatsApp with the formatted message</p>
+        <button onclick="sendWhatsApp()">📱 Send via WhatsApp</button>
+    </div>
+
+    <script>
+        const CART_KEY = 'libaasCart';
+        const WA_NUMBER = '6281234567890';
+        const ONGKIR = 24000;
+
+        const sampleProducts = [
+            { id: 1, name: 'Tepung Cassava Premium 5kg', price: 65000, quantity: 2 },
+            { id: 2, name: 'Camilan Singkong Crispy 500g', price: 35000, quantity: 3 },
+            { id: 3, name: 'Paket Hemat 10kg', price: 120000, quantity: 1 }
+        ];
+
+        function addSampleCart() {
+            localStorage.setItem(CART_KEY, JSON.stringify(sampleProducts));
+            document.getElementById('cart-status').innerHTML = 
+                '<p class="success">✓ Sample cart added successfully!</p>';
+            viewCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem(CART_KEY);
+            document.getElementById('cart-status').innerHTML = 
+                '<p class="success">✓ Cart cleared!</p>';
+            document.getElementById('cart-view').textContent = 'Cart is empty';
+            document.getElementById('message-preview').textContent = '';
+        }
+
+        function getCart() {
+            return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+        }
+
+        function viewCart() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                document.getElementById('cart-view').textContent = 'Cart is empty';
+                return;
+            }
+            
+            const view = cart.map(item => 
+                `${item.quantity}x ${item.name} @ Rp${item.price.toLocaleString('id-ID')} = Rp${(item.price * item.quantity).toLocaleString('id-ID')}`
+            ).join('\n');
+            
+            const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            const total = subtotal + ONGKIR;
+            
+            document.getElementById('cart-view').textContent = 
+                `${view}\n\nSubtotal: Rp${subtotal.toLocaleString('id-ID')}\nOngkir: Rp${ONGKIR.toLocaleString('id-ID')}\nTOTAL: Rp${total.toLocaleString('id-ID')}`;
+        }
+
+        function previewMessage() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                document.getElementById('message-preview').textContent = 'Cart is empty - add items first!';
+                return;
+            }
+
+            const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            const total = subtotal + ONGKIR;
+            
+            const itemLines = cart.map(item => 
+                `${item.quantity}x ${item.name} - Rp${(item.price * item.quantity).toLocaleString('id-ID')}`
+            ).join('\n');
+
+            const message = 
+`Halo Kain & Kasa 👋
+
+Saya mau order:
+${itemLines}
+
+Subtotal: Rp${subtotal.toLocaleString('id-ID')}
+Ongkir: Rp${ONGKIR.toLocaleString('id-ID')}
+*TOTAL: Rp${total.toLocaleString('id-ID')}*
+
+Mohon info pembayaran. Terima kasih! 🙏`;
+
+            document.getElementById('message-preview').textContent = message;
+        }
+
+        function sendWhatsApp() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                alert('Cart is empty! Add items first.');
+                return;
+            }
+
+            const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            const total = subtotal + ONGKIR;
+            
+            const itemLines = cart.map(item => 
+                `${item.quantity}x ${item.name} - Rp${(item.price * item.quantity).toLocaleString('id-ID')}`
+            ).join('\n');
+
+            const message = 
+`Halo Kain & Kasa 👋
+
+Saya mau order:
+${itemLines}
+
+Subtotal: Rp${subtotal.toLocaleString('id-ID')}
+Ongkir: Rp${ONGKIR.toLocaleString('id-ID')}
+*TOTAL: Rp${total.toLocaleString('id-ID')}*
+
+Mohon info pembayaran. Terima kasih! 🙏`;
+
+            const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Initialize
+        viewCart();
+    </script>
+</body>
+</html>

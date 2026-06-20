@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Dashboard — Libaas Studio</title>
+    <title>Order Dashboard — Kain & Kasa</title>
     <link rel="icon" type="image/png" href="image/favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -353,7 +353,7 @@
 </div>
 
 <section class="page-hero">
-    <span class="hero-label">Libaas Studio</span>
+    <span class="hero-label">Kain & Kasa</span>
     <h1 class="hero-title">Order Dashboard</h1>
     <p class="hero-sub">Current Cart &nbsp;·&nbsp; Order History &nbsp;·&nbsp; WhatsApp Checkout</p>
 </section>
@@ -361,9 +361,9 @@
 <div class="stats-strip">
     <div class="stats-inner">
         <div class="stat-box"><div class="stat-box-label">Cart Items</div><div class="stat-box-val" id="stat-cart-items">0</div></div>
-        <div class="stat-box"><div class="stat-box-label">Cart Total</div><div class="stat-box-val" id="stat-cart-total">Rs. 0</div></div>
+        <div class="stat-box"><div class="stat-box-label">Cart Total</div><div class="stat-box-val" id="stat-cart-total">Rp0</div></div>
         <div class="stat-box"><div class="stat-box-label">Total Orders</div><div class="stat-box-val" id="stat-total-orders">0</div></div>
-        <div class="stat-box"><div class="stat-box-label">Lifetime Spend</div><div class="stat-box-val" id="stat-lifetime">Rs. 0</div></div>
+        <div class="stat-box"><div class="stat-box-label">Lifetime Spend</div><div class="stat-box-val" id="stat-lifetime">Rp0</div></div>
     </div>
 </div>
 
@@ -403,11 +403,11 @@
                 <div class="summary-head"><h3>Order Summary</h3></div>
                 <div class="summary-body">
                     <div class="summary-row"><span>Items</span><span id="summary-items">0</span></div>
-                    <div class="summary-row"><span>Shipping</span><span style="color:#4ade80;font-size:10px;letter-spacing:1px;">FREE</span></div>
-                    <div class="summary-row"><span>Discount</span><span style="color:var(--gold);">LIBAAS10 — 10% Off</span></div>
+                    <div class="summary-row"><span>Subtotal</span><span id="summary-subtotal">Rp0</span></div>
+                    <div class="summary-row"><span>Ongkir</span><span id="summary-shipping">Rp24.000</span></div>
                     <div class="summary-divider"></div>
-                    <div class="summary-total"><span>Grand Total</span><span id="summary-total">Rs. 0</span></div>
-                    <p class="summary-note">Prices in Pakistani Rupees (PKR). Delivery charges confirmed via WhatsApp.</p>
+                    <div class="summary-total"><span>Grand Total</span><span id="summary-total">Rp0</span></div>
+                    <p class="summary-note">Harga dalam Rupiah (IDR). Konfirmasi pembayaran via WhatsApp.</p>
                     <button class="btn-whatsapp-order" id="btn-whatsapp" onclick="sendWhatsAppOrder()">
                         <i class="fab fa-whatsapp"></i> Confirm &amp; Order via WhatsApp
                     </button>
@@ -475,7 +475,7 @@
         </ul></div>
     </div>
     <div class="footer-bottom" style="max-width:1280px;margin:0 auto;">
-        <p>© 2024 Libaas Studio. All Rights Reserved.</p>
+        <p>© 2024 Kain & Kasa. All Rights Reserved.</p>
         <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="return.html">Returns</a></div>
     </div>
 </footer>
@@ -501,7 +501,7 @@
         <div class="modal-header"><h3>Your Bag</h3><button class="close-btn icon-btn" onclick="closeModal('cart-modal')"><i class="fas fa-times"></i></button></div>
         <div class="cart-items-modal" id="cart-items-modal"></div>
         <div class="cart-footer">
-            <div class="cart-total-row"><span>Total</span><span id="cart-slide-total">Rs. 0</span></div>
+            <div class="cart-total-row"><span>Total</span><span id="cart-slide-total">Rp0</span></div>
             <a href="order.html" class="btn-checkout-slide">Proceed To Checkout</a>
         </div>
     </div>
@@ -511,7 +511,7 @@
 <div class="auth-overlay" id="auth-modal" onclick="handleOverlayClick(event,'auth-modal')">
     <div class="auth-panel" id="auth-panel">
         <h2 id="auth-title">Login</h2>
-        <span class="auth-subtitle">Welcome back to Libaas Studio</span>
+        <span class="auth-subtitle">Welcome back to Kain & Kasa</span>
         <div id="login-form">
             <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
             <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"></div>
@@ -555,21 +555,29 @@ function saveOrderToHistory(orderId, items, total) {
 /* ── WhatsApp Checkout ── */
 function sendWhatsAppOrder() {
     if (!cart.length) return;
-    const grandTotal = cart.reduce((s,i) => s + i.price * i.quantity, 0);
+    const subtotal   = cart.reduce((s,i) => s + i.price * i.quantity, 0);
+    const ongkir     = 24000;
+    const grandTotal = subtotal + ongkir;
     const orderId    = generateOrderId();
     const itemLines  = cart.map((item,idx) => {
-        return `${idx+1}. ${item.name}\n   Qty: ${item.quantity}  x  Rs. ${item.price.toLocaleString()} = *Rs. ${(item.price*item.quantity).toLocaleString()}*`;
-    }).join('\n\n');
+        return `${item.quantity}x ${item.name} - Rp${(item.price*item.quantity).toLocaleString('id-ID')}`;
+    }).join('\n');
     const message =
-`Shopping Bag - Libaas Studio\nOrder ID: ${orderId}\n` +
-`--------------------------------\n\n${itemLines}\n\n` +
-`--------------------------------\nGrand Total: Rs. ${grandTotal.toLocaleString()} PKR\nShipping: FREE\n` +
-`--------------------------------\nPlease reply with your Full Name, Delivery Address, and Contact Number.\n\nThank you for shopping at Libaas Studio!`;
+`Halo Kain & Kasa 👋
+
+Saya mau order:
+${itemLines}
+
+Subtotal: Rp${subtotal.toLocaleString('id-ID')}
+Ongkir: Rp${ongkir.toLocaleString('id-ID')}
+*TOTAL: Rp${grandTotal.toLocaleString('id-ID')}*
+
+Mohon info pembayaran. Terima kasih! 🙏`;
 
     saveOrderToHistory(orderId, cart, grandTotal);
     cart = [];
     localStorage.setItem(CART_KEY, '[]');
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(message)}`, '_blank');
     renderOrder(); renderHistory(); updateStats(); updateTabBadges();
     showToast('Order ' + orderId + ' saved!');
     setTimeout(() => switchTab('history'), 1200);
@@ -583,9 +591,12 @@ function renderOrder() {
     const tableWrap  = document.getElementById('cart-table-wrap');
     const panel      = document.getElementById('summary-panel');
     const tq = cart.reduce((s,i) => s+i.quantity, 0);
-    const tp = cart.reduce((s,i) => s+i.price*i.quantity, 0);
+    const subtotal = cart.reduce((s,i) => s+i.price*i.quantity, 0);
+    const ongkir = 24000;
+    const grandTotal = subtotal + ongkir;
     document.getElementById('summary-items').textContent = tq + (tq===1?' item':' items');
-    document.getElementById('summary-total').textContent = 'Rs. ' + tp.toLocaleString();
+    document.getElementById('summary-subtotal').textContent = 'Rp' + subtotal.toLocaleString('id-ID');
+    document.getElementById('summary-total').textContent = 'Rp' + grandTotal.toLocaleString('id-ID');
     if (!cart.length) {
         tableWrap.classList.add('hidden'); emptyState.classList.remove('hidden');
         panel.style.opacity='0.45'; panel.style.pointerEvents='none';
@@ -594,20 +605,20 @@ function renderOrder() {
         tableWrap.classList.remove('hidden'); emptyState.classList.add('hidden');
         panel.style.opacity=''; panel.style.pointerEvents='';
         document.getElementById('btn-whatsapp').disabled=false;
-        const cats = {casual:'Lawn',formal:'Formal',party:'Party Wear',bridal:'Bridal'};
+        const cats = {tepung:'Tepung',camilan:'Camilan',paket:'Paket'};
         body.innerHTML = cart.map(item => {
             const cat = cats[item.category] || item.category;
             const sub = item.price * item.quantity;
             return `<div class="cart-row" id="row-${item.id}">
                 <div class="col-image"><a href="product-detail.html?id=${item.id}"><img src="${item.image}" alt="${item.name}"></a></div>
                 <div class="col-name"><div class="col-name-text"><a href="product-detail.html?id=${item.id}" style="color:inherit">${item.name}</a></div><div class="col-name-cat">${cat}</div></div>
-                <div class="col-price"><span class="col-price-val">Rs. ${item.price.toLocaleString()}</span></div>
+                <div class="col-price"><span class="col-price-val">Rp${item.price.toLocaleString('id-ID')}</span></div>
                 <div class="col-qty"><div class="qty-cell">
                     <button onclick="changeQty('${item.id}',-1)"><i class="fas fa-minus"></i></button>
                     <span id="qty-${item.id}">${item.quantity}</span>
                     <button onclick="changeQty('${item.id}',1)"><i class="fas fa-plus"></i></button>
                 </div></div>
-                <div class="col-sub"><span class="col-sub-val" id="sub-${item.id}">Rs. ${sub.toLocaleString()}</span></div>
+                <div class="col-sub"><span class="col-sub-val" id="sub-${item.id}">Rp${sub.toLocaleString('id-ID')}</span></div>
                 <div class="col-del"><button class="btn-remove" onclick="removeItem('${item.id}')"><i class="fas fa-times"></i></button></div>
             </div>`;
         }).join('');
@@ -620,10 +631,11 @@ function changeQty(id, delta) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     const qe = document.getElementById('qty-'+id), se = document.getElementById('sub-'+id);
     if (qe) qe.textContent = item.quantity;
-    if (se) se.textContent = 'Rs. ' + (item.price*item.quantity).toLocaleString();
-    const tq=cart.reduce((s,i)=>s+i.quantity,0), tp=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+    if (se) se.textContent = 'Rp' + (item.price*item.quantity).toLocaleString('id-ID');
+    const tq=cart.reduce((s,i)=>s+i.quantity,0), subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0), ongkir=24000, grandTotal=subtotal+ongkir;
     document.getElementById('summary-items').textContent = tq+(tq===1?' item':' items');
-    document.getElementById('summary-total').textContent = 'Rs. '+tp.toLocaleString();
+    document.getElementById('summary-subtotal').textContent = 'Rp' + subtotal.toLocaleString('id-ID');
+    document.getElementById('summary-total').textContent = 'Rp' + grandTotal.toLocaleString('id-ID');
     updateStats(); updateTabBadges();
 }
 
@@ -654,7 +666,7 @@ function renderHistory() {
             <td class="order-date-cell"><div>${formatDate(o.date)}</div><div style="font-size:9.5px;color:var(--text-dim);margin-top:2px;">${formatTime(o.date)}</div></td>
             <td>${cnt} item${cnt!==1?'s':''}</td>
             <td><span class="status-badge ${statusClass(o.status)}">${o.status}</span></td>
-            <td class="order-total-cell">Rs. ${o.total.toLocaleString()}</td>
+            <td class="order-total-cell">Rp${o.total.toLocaleString('id-ID')}</td>
             <td><i class="fas fa-chevron-right" style="color:var(--text-dim);font-size:10px;"></i></td>
         </tr>`;
     }).join('');
@@ -663,7 +675,7 @@ function renderHistory() {
         return `<div class="history-card" onclick="openOrderDetail('${o.id}')">
             <div class="history-card-top"><div><div class="history-card-id">${o.id}</div><div class="history-card-date">${formatDate(o.date)} · ${formatTime(o.date)}</div></div>
             <span class="status-badge ${statusClass(o.status)}">${o.status}</span></div>
-            <div class="history-card-bottom"><div><div class="history-card-total">Rs. ${o.total.toLocaleString()}</div><div class="history-card-items-count">${cnt} item${cnt!==1?'s':''}</div></div>
+            <div class="history-card-bottom"><div><div class="history-card-total">Rp${o.total.toLocaleString('id-ID')}</div><div class="history-card-items-count">${cnt} item${cnt!==1?'s':''}</div></div>
             <i class="fas fa-arrow-right" style="color:var(--text-dim);font-size:11px;"></i></div>
         </div>`;
     }).join('');
@@ -673,23 +685,10 @@ function renderHistory() {
 function openOrderDetail(orderId) {
     const order = orderHistory.find(o => o.id===orderId); if (!order) return;
     document.getElementById('odp-title').textContent = orderId;
-    document.getElementById('odp-footer-total').textContent = 'Rs. ' + order.total.toLocaleString();
+    document.getElementById('odp-footer-total').textContent = 'Rp' + order.total.toLocaleString('id-ID');
     document.getElementById('odp-status-wrap').innerHTML = `<span class="status-badge ${statusClass(order.status)}">${order.status}</span>`;
     const cnt = order.items.reduce((s,i)=>s+i.quantity,0);
-    document.getElementById('odp-body').innerHTML = `
-        <div class="odp-meta">
-            <div class="odp-meta-item"><div class="odp-meta-label">Order ID</div><div class="odp-meta-val" style="color:var(--gold);font-family:var(--font-display);">${order.id}</div></div>
-            <div class="odp-meta-item"><div class="odp-meta-label">Date Placed</div><div class="odp-meta-val">${formatDate(order.date)}</div></div>
-            <div class="odp-meta-item"><div class="odp-meta-label">Time</div><div class="odp-meta-val">${formatTime(order.date)}</div></div>
-            <div class="odp-meta-item"><div class="odp-meta-label">Total Items</div><div class="odp-meta-val">${cnt}</div></div>
-        </div>
-        <div class="odp-items-title">Items Ordered</div>
-        <div>${order.items.map(item=>`
-            <div class="odp-item-row">
-                <img class="odp-item-img" src="${item.image}" alt="${item.name}">
-                <div class="odp-item-info"><div class="odp-item-name">${item.name}</div><div class="odp-item-sub">Qty: ${item.quantity} × Rs. ${item.price.toLocaleString()}</div></div>
-                <div class="odp-item-total">Rs. ${(item.price*item.quantity).toLocaleString()}</div>
-            </div>`).join('')}</div>`;
+    document.getElementById('odp-body').innerHTML = `\n        <div class="odp-meta">\n            <div class="odp-meta-item"><div class="odp-meta-label">Order ID</div><div class="odp-meta-val" style="color:var(--gold);font-family:var(--font-display);">${order.id}</div></div>\n            <div class="odp-meta-item"><div class="odp-meta-label">Date Placed</div><div class="odp-meta-val">${formatDate(order.date)}</div></div>\n            <div class="odp-meta-item"><div class="odp-meta-label">Time</div><div class="odp-meta-val">${formatTime(order.date)}</div></div>\n            <div class="odp-meta-item"><div class="odp-meta-label">Total Items</div><div class="odp-meta-val">${cnt}</div></div>\n        </div>\n        <div class="odp-items-title">Items Ordered</div>\n        <div>${order.items.map(item=>`\n            <div class="odp-item-row">\n                <img class="odp-item-img" src="${item.image}" alt="${item.name}">\n                <div class="odp-item-info"><div class="odp-item-name">${item.name}</div><div class="odp-item-sub">Qty: ${item.quantity} × Rp${item.price.toLocaleString('id-ID')}</div></div>\n                <div class="odp-item-total">Rp${(item.price*item.quantity).toLocaleString('id-ID')}</div>\n            </div>`).join('')}</div>`;
     const overlay=document.getElementById('order-detail-overlay'), panel=document.getElementById('order-detail-panel');
     overlay.classList.add('active'); setTimeout(()=>panel.classList.add('visible'),10);
     document.body.style.overflow='hidden';
@@ -711,12 +710,12 @@ function confirmClearHistory() {
 
 /* ── Stats & Badges ── */
 function updateStats() {
-    const cq=cart.reduce((s,i)=>s+i.quantity,0), ct=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+    const cq=cart.reduce((s,i)=>s+i.quantity,0), subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0), ongkir=24000, grandTotal=subtotal+ongkir;
     const lt=orderHistory.reduce((s,o)=>s+o.total,0);
     document.getElementById('stat-cart-items').textContent = cq;
-    document.getElementById('stat-cart-total').textContent = 'Rs. ' + ct.toLocaleString();
+    document.getElementById('stat-cart-total').textContent = 'Rp' + grandTotal.toLocaleString('id-ID');
     document.getElementById('stat-total-orders').textContent = orderHistory.length;
-    document.getElementById('stat-lifetime').textContent = 'Rs. ' + lt.toLocaleString();
+    document.getElementById('stat-lifetime').textContent = 'Rp' + lt.toLocaleString('id-ID');
 }
 function updateTabBadges() {
     const cq=cart.reduce((s,i)=>s+i.quantity,0);
@@ -736,12 +735,12 @@ function switchTab(tab) {
 /* ── Cart Slide Modal ── */
 function updateCartSlideModal() {
     const tq=cart.reduce((s,i)=>s+i.quantity,0), tp=cart.reduce((s,i)=>s+i.price*i.quantity,0);
-    document.getElementById('cart-slide-total').textContent = 'Rs. '+tp.toLocaleString();
+    document.getElementById('cart-slide-total').textContent = 'Rp'+tp.toLocaleString('id-ID');
     const el=document.getElementById('cart-items-modal'); if(!el) return;
     el.innerHTML = !tq
         ? `<div style="text-align:center;padding:48px 0;color:var(--text-muted);"><i class="fas fa-shopping-bag" style="font-size:28px;margin-bottom:16px;display:block;opacity:.3;"></i><p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;">Your bag is empty</p></div>`
         : cart.map(item=>`<div class="cart-item"><img src="${item.image}" alt="${item.name}">
-            <div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">Rs. ${item.price.toLocaleString()}</div></div>
+            <div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">Rp${item.price.toLocaleString('id-ID')}</div></div>
             <div class="cart-item-controls">
                 <button class="cart-qty-btn" onclick="changeQty('${item.id}',-1);updateCartSlideModal()"><i class="fas fa-minus"></i></button>
                 <span class="cart-qty">${item.quantity}</span>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Collections — Libaas Studio</title>
+    <title>Produk Gluten-Free — Kain & Kasa</title>
     <link rel="icon" type="image/png" href="image/favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -894,7 +894,7 @@
      PRICE RANGE HERO
 ═══════════════════════════════════ -->
 <section class="price-hero reveal">
-    <span class="price-hero-label">Libaas Studio — Exclusive Catalogue</span>
+    <span class="price-hero-label">Kain & Kasa — Exclusive Catalogue</span>
     <h1 class="price-hero-title">Premium Suits Available From <span>PKR 3,200</span> to <span>PKR 25,000</span></h1>
     <p class="price-hero-sub">Lawn · Formal · Party Wear · Bridal</p>
     <div class="price-divider">
@@ -908,11 +908,10 @@
      STICKY FILTER BAR
 ═══════════════════════════════════ -->
 <div class="filters-bar" id="filters-bar">
-    <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
-    <button class="filter-btn" onclick="filterProducts('casual',this)">Casual / Lawn</button>
-    <button class="filter-btn" onclick="filterProducts('formal',this)">Formal</button>
-    <button class="filter-btn" onclick="filterProducts('party',this)">Party Wear</button>
-    <button class="filter-btn" onclick="filterProducts('bridal',this)">Bridal</button>
+    <button class="filter-btn active" onclick="filterProducts('all',this)">Semua Produk</button>
+    <button class="filter-btn" onclick="filterProducts('tepung',this)">Tepung</button>
+    <button class="filter-btn" onclick="filterProducts('camilan',this)">Camilan</button>
+    <button class="filter-btn" onclick="filterProducts('paket',this)">Paket Hemat</button>
 </div>
 
 <!-- ═══════════════════════════════════
@@ -923,8 +922,8 @@
 ═══════════════════════════════════ -->
 <div class="products-wrap">
     <div class="cat-header reveal">
-        <span class="cat-label">The Full Collection</span>
-        <h2 class="cat-title" id="grid-heading">All Products</h2>
+        <span class="cat-label">Koleksi Lengkap</span>
+        <h2 class="cat-title" id="grid-heading">Semua Produk</h2>
     </div>
     <div class="products-grid" id="products-grid">
         <!-- Populated by JavaScript below -->
@@ -988,7 +987,7 @@
     </div>
 
     <div class="footer-bottom" style="max-width:1280px;margin:0 auto;">
-        <p>© 2024 Libaas Studio. All Rights Reserved.</p>
+        <p>© 2024 Kain & Kasa. All Rights Reserved.</p>
         <div class="footer-bottom-links">
             <a href="privacy.html">Privacy</a>
             <a href="#">Terms</a>
@@ -1025,7 +1024,7 @@
 <div class="auth-overlay" id="auth-modal" onclick="handleOverlayClick(event,'auth-modal')">
     <div class="auth-panel" id="auth-panel">
         <h2 id="auth-title">Login</h2>
-        <span class="auth-subtitle">Welcome back to Libaas Studio</span>
+        <span class="auth-subtitle">Welcome back to Kain & Kasa</span>
 
         <div id="login-form">
             <div class="form-group">
@@ -1065,48 +1064,22 @@
      JAVASCRIPT
 ═══════════════════════════════════ -->
 <script>
-/* ════════════════════════════════════
-   PRODUCT DATA
-   IDs are string slugs (e.g. 'lawn1') so they
+/* ═════════════════════════════════════
+   PRODUCT DATA — Gluten-Free Products
+   IDs are string slugs (e.g. 'tepung1') so they
    can be safely passed in the URL query string
-   to product-detail.html?id=lawn1
+   to product-detail.html?id=tepung1
 ════════════════════════════════════ */
 const products = [
 
-    /* ── Casual / Lawn (9) ── */
-    { id:'lawn1',   name:"Pastel Rose Lawn Printed Summer Suit",       price:3500,  originalPrice:4800,  category:"casual", image:"image/lawn1.jpg",   alt:"Pastel rose lawn suit" },
-    { id:'lawn2',   name:"Sage Green Casual Lawn Suit",                price:3200,  originalPrice:4500,  category:"casual", image:"image/lawn2.jpg",   alt:"Sage green lawn suit" },
-    { id:'lawn3',   name:"Teal Blue Digital Print Lawn Suit",          price:3800,  originalPrice:5200,  category:"casual", image:"image/lawn3.jpg",   alt:"Teal blue lawn suit" },
-    { id:'lawn4',   name:"Off-White Classic Lawn Summer Suit",         price:3300,  originalPrice:4600,  category:"casual", image:"image/lawn4.jpg",   alt:"Off-white lawn suit" },
-    { id:'lawn5',   name:"Tropical Green Printed Lawn Suit",           price:3600,  originalPrice:5000,  category:"casual", image:"image/lawn5.jpg",   alt:"Tropical green lawn suit" },
-    { id:'lawn6',   name:"Lemon Yellow Cotton Embroidered Suit",       price:4200,  originalPrice:5800,  category:"casual", image:"image/lawn6.jpg",   alt:"Lemon yellow lawn suit" },
-    { id:'lawn7',   name:"Blush Pink Floral Lawn Printed Suit",        price:3400,  originalPrice:4700,  category:"casual", image:"image/lawn7.jpg",   alt:"Blush pink lawn suit" },
-    { id:'lawn8',   name:"Coral Orange Summer Lawn Suit",              price:3100,  originalPrice:4300,  category:"casual", image:"image/lawn8.jpg",   alt:"Coral orange lawn suit" },
-    { id:'lawn9',   name:"Aqua Blue Light Cotton Casual Suit",         price:3700,  originalPrice:5100,  category:"casual", image:"image/lawn9.jpg",   alt:"Aqua blue casual suit" },
+    /* ── Tepung Cassava ── */
+    { id:'tepung1', name:"Tepung Cassava Premium 5kg",                  price:65000, originalPrice:75000, category:"tepung",  image:"🌾", alt:"Tepung Cassava Premium" },
 
-    /* ── Formal (6) ── */
-    { id:'formal1', name:"Ivory Pearl Embroidered Chiffon Suit",       price:6500,  originalPrice:8999,  category:"formal", image:"image/formal1.jpg", alt:"Ivory pearl formal suit" },
-    { id:'formal2', name:"Midnight Black Organza Formal Suit",         price:7200,  originalPrice:9999,  category:"formal", image:"image/formal2.jpg", alt:"Midnight black formal suit" },
-    { id:'formal3', name:"Deep Maroon Velvet Winter Suit",             price:8500,  originalPrice:11500, category:"formal", image:"image/formal3.jpg", alt:"Deep maroon velvet suit" },
-    { id:'formal4', name:"Smoke Grey Georgette Embroidered Suit",      price:7800,  originalPrice:10500, category:"formal", image:"image/formal4.jpg", alt:"Smoke grey formal suit" },
-    { id:'formal5', name:"Bottle Green Jacquard Formal Suit",          price:9200,  originalPrice:12500, category:"formal", image:"image/formal5.jpg", alt:"Bottle green jacquard suit" },
-    { id:'formal6', name:"Cream Silk Embroidered Classic Suit",        price:8800,  originalPrice:11999, category:"formal", image:"image/formal6.jpg", alt:"Cream silk formal suit" },
+    /* ── Camilan Singkong ── */
+    { id:'camilan1',name:"Camilan Singkong Crispy 500g",                price:35000, originalPrice:45000, category:"camilan", image:"🍪", alt:"Camilan Singkong Crispy" },
 
-    /* ── Party Wear (6) ── */
-    { id:'party1',  name:"Royal Blue Embroidered Net Suit",            price:5800,  originalPrice:7999,  category:"party",  image:"image/party1.jpg",  alt:"Royal blue party suit" },
-    { id:'party2',  name:"Gold Sequin Party Wear Suit",                price:6900,  originalPrice:9500,  category:"party",  image:"image/party2.jpg",  alt:"Gold sequin party suit" },
-    { id:'party3',  name:"Golden Glow Embroidered Net Suit",           price:5500,  originalPrice:7500,  category:"party",  image:"image/party3.jpg",  alt:"Golden glow party suit" },
-    { id:'party4',  name:"Ruby Red Embellished Chiffon Suit",          price:6200,  originalPrice:8500,  category:"party",  image:"image/party4.jpg",  alt:"Ruby red party suit" },
-    { id:'party5',  name:"Midnight Navy Sequin Party Suit",            price:7100,  originalPrice:9800,  category:"party",  image:"image/party5.jpg",  alt:"Midnight navy party suit" },
-    { id:'party6',  name:"Silver Shimmer Festive Chiffon Suit",        price:5900,  originalPrice:8200,  category:"party",  image:"image/party6.jpg",  alt:"Silver shimmer party suit" },
-
-    /* ── Bridal (6) ── */
-    { id:'bridal1', name:"Crimson Red Bridal Chiffon Masterpiece",     price:18500, originalPrice:24999, category:"bridal", image:"image/bridal1.jpg", alt:"Crimson red bridal suit" },
-    { id:'bridal2', name:"Dusty Pink Bridal Embellished Suit",         price:22000, originalPrice:29999, category:"bridal", image:"image/bridal2.jpg", alt:"Dusty pink bridal suit" },
-    { id:'bridal3', name:"Spring Garden Bridal Chiffon Suit",          price:16500, originalPrice:22000, category:"bridal", image:"image/bridal3.jpg", alt:"Spring garden bridal suit" },
-    { id:'bridal4', name:"Sky Blue Heavy Embroidered Bridal Suit",     price:25000, originalPrice:33000, category:"bridal", image:"image/bridal4.jpg", alt:"Sky blue bridal suit" },
-    { id:'bridal5', name:"Ivory & Gold Bridal Lehenga Style Suit",     price:28500, originalPrice:37999, category:"bridal", image:"image/bridal5.jpg", alt:"Ivory gold bridal suit" },
-    { id:'bridal6', name:"Deep Plum Velvet Bridal Embroidered Suit",   price:21000, originalPrice:28500, category:"bridal", image:"image/bridal6.jpg", alt:"Deep plum bridal suit" }
+    /* ── Paket Keluarga ── */
+    { id:'paket1',  name:"Paket Hemat 10kg",                   price:120000, originalPrice:150000, category:"paket", image:"📦", alt:"Paket Hemat 10kg" }
 ];
 
 /* ════════════════════════════════════
@@ -1161,15 +1134,20 @@ function updateCartUI() {
     if (cart.length === 0) {
         cartItemsEl.innerHTML = `<div style="text-align:center;padding:48px 0;color:var(--text-muted);">
             <i class="fas fa-shopping-bag" style="font-size:28px;margin-bottom:16px;display:block;opacity:.3;"></i>
-            <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;">Your bag is empty</p>
+            <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;">Tas Anda kosong</p>
         </div>`;
     } else {
-        cartItemsEl.innerHTML = cart.map(item => `
+        cartItemsEl.innerHTML = cart.map(item => {
+            const isEmoji = item.image && item.image.length <= 4 && /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u.test(item.image);
+            const imgContent = isEmoji 
+                ? `<div style="width:64px;height:80px;display:flex;align-items:center;justify-content:center;font-size:40px;background:#1a1a1a;">${item.image}</div>`
+                : `<img src="${item.image}" alt="${item.alt || item.name}">`;
+            return `
             <div class="cart-item">
-                <img src="${item.image}" alt="${item.alt || item.name}">
+                ${imgContent}
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">Rs. ${item.price.toLocaleString()}</div>
+                    <div class="cart-item-price">Rp${item.price.toLocaleString('id-ID')}</div>
                 </div>
                 <div class="cart-item-controls">
                     <button class="cart-qty-btn" onclick="updateQuantity('${item.id}',-1)"><i class="fas fa-minus"></i></button>
@@ -1177,9 +1155,10 @@ function updateCartUI() {
                     <button class="cart-qty-btn" onclick="updateQuantity('${item.id}',1)"><i class="fas fa-plus"></i></button>
                     <button class="cart-remove" onclick="removeFromCart('${item.id}')"><i class="fas fa-trash-alt"></i></button>
                 </div>
-            </div>`).join('');
+            </div>`;
+        }).join('');
     }
-    document.getElementById('cart-total').textContent = 'Rs. ' + totalPrice.toLocaleString();
+    document.getElementById('cart-total').textContent = 'Rp' + totalPrice.toLocaleString('id-ID');
 }
 
 /* ════════════════════════════════════
@@ -1195,17 +1174,23 @@ function displayProducts(list) {
     if (list.length === 0) {
         grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:80px 0;
             color:var(--text-muted);font-size:12px;letter-spacing:2px;text-transform:uppercase;">
-            No products found</div>`;
+            Tidak ada produk</div>`;
         return;
     }
-    grid.innerHTML = list.map((p, i) => `
+    grid.innerHTML = list.map((p, i) => {
+        const isEmoji = p.image && p.image.length <= 4 && /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u.test(p.image);
+        const imgContent = isEmoji 
+            ? `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px;background:#1a1a1a;">${p.image}</div>`
+            : `<img src="${p.image}" alt="${p.alt}" loading="lazy">`;
+        const catLabel = p.category === 'tepung' ? 'Tepung' : p.category === 'camilan' ? 'Camilan' : p.category === 'paket' ? 'Paket' : p.category.charAt(0).toUpperCase() + p.category.slice(1);
+        return `
         <div class="product-card" data-id="${p.id}" style="transition-delay:${i * 0.04}s">
 
             <!-- Image + overlay wrapped in product-detail link -->
             <a href="product-detail.html?id=${p.id}" class="product-card-img" style="text-decoration:none;">
-                <img src="${p.image}" alt="${p.alt}" loading="lazy">
-                <div class="discount-badge">${pct(p.price, p.originalPrice)}% OFF</div>
-                <div class="category-tag">${p.category === 'casual' ? 'Lawn' : p.category.charAt(0).toUpperCase() + p.category.slice(1)}</div>
+                ${imgContent}
+                <div class="discount-badge">${Math.round((1 - p.price / p.originalPrice) * 100)}% OFF</div>
+                <div class="category-tag">${catLabel}</div>
                 <div class="product-hover-overlay">
                     <button class="product-hover-btn"
                         onclick="event.preventDefault(); event.stopPropagation(); addToCart('${p.id}')">
@@ -1220,8 +1205,8 @@ function displayProducts(list) {
                     <div class="product-card-name">${p.name}</div>
                 </a>
                 <div class="product-card-prices">
-                    <span class="price-original">Rs. ${p.originalPrice.toLocaleString()}</span>
-                    <span class="price-sale">Rs. ${p.price.toLocaleString()}</span>
+                    <span class="price-original">Rp${p.originalPrice.toLocaleString('id-ID')}</span>
+                    <span class="price-sale">Rp${p.price.toLocaleString('id-ID')}</span>
                 </div>
             </div>
 
@@ -1232,7 +1217,8 @@ function displayProducts(list) {
                 </button>
             </div>
 
-        </div>`).join('');
+        </div>`;
+    }).join('');
 
     grid.querySelectorAll('.product-card').forEach(el => revealObserver.observe(el));
 }
@@ -1249,11 +1235,10 @@ function filterProducts(category, btn) {
     } else {
         document.querySelectorAll('.filter-btn').forEach(b => {
             const t = b.textContent.toLowerCase();
-            if ((category === 'all'    && t.includes('all'))    ||
-                (category === 'casual' && t.includes('casual')) ||
-                (category === 'formal' && t.includes('formal')) ||
-                (category === 'party'  && t.includes('party'))  ||
-                (category === 'bridal' && t.includes('bridal'))) {
+            if ((category === 'all'     && t.includes('semua')) ||
+                (category === 'tepung'  && t.includes('tepung')) ||
+                (category === 'camilan' && t.includes('camilan')) ||
+                (category === 'paket'   && t.includes('paket'))) {
                 b.classList.add('active');
             }
         });

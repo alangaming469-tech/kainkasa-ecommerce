@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail — Libaas Studio</title>
+    <title>Product Detail — Kain & Kasa</title>
     <link rel="icon" type="image/png" href="image/favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -442,7 +442,7 @@
         </div>
     </div>
     <div class="footer-bottom" style="max-width:1280px;margin:0 auto;">
-        <p>© 2024 Libaas Studio. All Rights Reserved.</p>
+        <p>© 2024 Kain & Kasa. All Rights Reserved.</p>
         <div class="footer-bottom-links">
             <a href="privacy.html">Privacy</a>
             <a href="#">Terms</a>
@@ -474,7 +474,7 @@
 <div class="auth-overlay" id="auth-modal" onclick="handleOverlayClick(event,'auth-modal')">
     <div class="auth-panel" id="auth-panel">
         <h2 id="auth-title">Login</h2>
-        <span class="auth-subtitle">Welcome back to Libaas Studio</span>
+        <span class="auth-subtitle">Welcome back to Kain & Kasa</span>
         <div id="login-form">
             <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
             <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"></div>
@@ -504,55 +504,27 @@
    (Keep in sync with index.html & products.html)
 ────────────────────────────────────────── */
 const allProducts = [
-    { id:'lawn1',   name:"Pastel Rose Lawn Printed Summer Suit",       price:3500,  originalPrice:4800,  category:"casual", image:"image/lawn1.jpg",   alt:"Pastel rose lawn suit" },
-    { id:'lawn2',   name:"Sage Green Casual Lawn Suit",                price:3200,  originalPrice:4500,  category:"casual", image:"image/lawn2.jpg",   alt:"Sage green lawn suit" },
-    { id:'lawn3',   name:"Teal Blue Digital Print Lawn Suit",          price:3800,  originalPrice:5200,  category:"casual", image:"image/lawn3.jpg",   alt:"Teal blue lawn suit" },
-    { id:'lawn4',   name:"Off-White Classic Lawn Summer Suit",         price:3300,  originalPrice:4600,  category:"casual", image:"image/lawn4.jpg",   alt:"Off-white lawn suit" },
-    { id:'lawn5',   name:"Tropical Green Printed Lawn Suit",           price:3600,  originalPrice:5000,  category:"casual", image:"image/lawn5.jpg",   alt:"Tropical green lawn suit" },
-    { id:'lawn6',   name:"Lemon Yellow Cotton Embroidered Suit",       price:4200,  originalPrice:5800,  category:"casual", image:"image/lawn6.jpg",   alt:"Lemon yellow lawn suit" },
-    { id:'lawn7',   name:"Blush Pink Floral Lawn Printed Suit",        price:3400,  originalPrice:4700,  category:"casual", image:"image/lawn7.jpg",   alt:"Blush pink lawn suit" },
-    { id:'lawn8',   name:"Coral Orange Summer Lawn Suit",              price:3100,  originalPrice:4300,  category:"casual", image:"image/lawn8.jpg",   alt:"Coral orange lawn suit" },
-    { id:'lawn9',   name:"Aqua Blue Light Cotton Casual Suit",         price:3700,  originalPrice:5100,  category:"casual", image:"image/lawn9.jpg",   alt:"Aqua blue casual suit" },
-    { id:'formal1', name:"Ivory Pearl Embroidered Chiffon Suit",       price:6500,  originalPrice:8999,  category:"formal", image:"image/formal1.jpg", alt:"Ivory pearl formal suit" },
-    { id:'formal2', name:"Midnight Black Organza Formal Suit",         price:7200,  originalPrice:9999,  category:"formal", image:"image/formal2.jpg", alt:"Midnight black formal suit" },
-    { id:'formal3', name:"Deep Maroon Velvet Winter Suit",             price:8500,  originalPrice:11500, category:"formal", image:"image/formal3.jpg", alt:"Deep maroon velvet suit" },
-    { id:'formal4', name:"Smoke Grey Georgette Embroidered Suit",      price:7800,  originalPrice:10500, category:"formal", image:"image/formal4.jpg", alt:"Smoke grey formal suit" },
-    { id:'formal5', name:"Bottle Green Jacquard Formal Suit",          price:9200,  originalPrice:12500, category:"formal", image:"image/formal5.jpg", alt:"Bottle green jacquard suit" },
-    { id:'formal6', name:"Cream Silk Embroidered Classic Suit",        price:8800,  originalPrice:11999, category:"formal", image:"image/formal6.jpg", alt:"Cream silk formal suit" },
-    { id:'party1',  name:"Royal Blue Embroidered Net Suit",            price:5800,  originalPrice:7999,  category:"party",  image:"image/party1.jpg",  alt:"Royal blue party suit" },
-    { id:'party2',  name:"Gold Sequin Party Wear Suit",                price:6900,  originalPrice:9500,  category:"party",  image:"image/party2.jpg",  alt:"Gold sequin party suit" },
-    { id:'party3',  name:"Golden Glow Embroidered Net Suit",           price:5500,  originalPrice:7500,  category:"party",  image:"image/party3.jpg",  alt:"Golden glow party suit" },
-    { id:'party4',  name:"Ruby Red Embellished Chiffon Suit",          price:6200,  originalPrice:8500,  category:"party",  image:"image/party4.jpg",  alt:"Ruby red party suit" },
-    { id:'party5',  name:"Midnight Navy Sequin Party Suit",            price:7100,  originalPrice:9800,  category:"party",  image:"image/party5.jpg",  alt:"Midnight navy party suit" },
-    { id:'party6',  name:"Silver Shimmer Festive Chiffon Suit",        price:5900,  originalPrice:8200,  category:"party",  image:"image/party6.jpg",  alt:"Silver shimmer party suit" },
-    { id:'bridal1', name:"Crimson Red Bridal Chiffon Masterpiece",     price:18500, originalPrice:24999, category:"bridal", image:"image/bridal1.jpg", alt:"Crimson red bridal suit" },
-    { id:'bridal2', name:"Dusty Pink Bridal Embellished Suit",         price:22000, originalPrice:29999, category:"bridal", image:"image/bridal2.jpg", alt:"Dusty pink bridal suit" },
-    { id:'bridal3', name:"Spring Garden Bridal Chiffon Suit",          price:16500, originalPrice:22000, category:"bridal", image:"image/bridal3.jpg", alt:"Spring garden bridal suit" },
-    { id:'bridal4', name:"Sky Blue Heavy Embroidered Bridal Suit",     price:25000, originalPrice:33000, category:"bridal", image:"image/bridal4.jpg", alt:"Sky blue bridal suit" },
-    { id:'bridal5', name:"Ivory & Gold Bridal Lehenga Style Suit",     price:28500, originalPrice:37999, category:"bridal", image:"image/bridal5.jpg", alt:"Ivory gold bridal suit" },
-    { id:'bridal6', name:"Deep Plum Velvet Bridal Embroidered Suit",   price:21000, originalPrice:28500, category:"bridal", image:"image/bridal6.jpg", alt:"Deep plum bridal suit" }
+    { id:'tepung1', name:"Tepung Cassava Premium 5kg",                  price:65000, originalPrice:75000, category:"tepung", image:"🌾", alt:"Tepung Cassava Premium" },
+    { id:'camilan1',name:"Camilan Singkong Crispy 500g",                price:35000, originalPrice:45000, category:"camilan", image:"🍪", alt:"Camilan Singkong Crispy" },
+    { id:'paket1',  name:"Paket Hemat 10kg",                   price:120000, originalPrice:150000, category:"paket", image:"📦", alt:"Paket Hemat 10kg" }
 ];
 
 /* ── Category display labels ── */
-const catLabels = { casual:'Lawn', formal:'Formal', party:'Party Wear', bridal:'Bridal' };
+const catLabels = { tepung:'Tepung', camilan:'Camilan', paket:'Paket' };
 
-/* ── Fabric descriptions per category ── */
+/* ── Product descriptions per category ── */
 const catDescriptions = {
-    casual: [
-        "A breezy, sun-kissed lawn ensemble crafted for the warm months. The soft-touch fabric is lightweight and breathable, making it an ideal choice for daily wear, outdoor gatherings, and relaxed afternoon events.",
-        "Finished with elegant digital or block print detailing, the design strikes a balance between carefree charm and polished grace. The subtle embroidery at the neckline adds a touch of refinement to an otherwise effortless look."
+    tepung: [
+        "Tepung cassava premium berkualitas tinggi, diproduksi dari singkong pilihan. Cocok untuk berbagai kebutuhan memasak dan membuat kue. Bebas gluten, sehat, dan bergizi.",
+        "Kemasan 5kg ekonomis untuk kebutuhan rumah tangga atau usaha kuliner. Tekstur halus, warna putih bersih, dan mudah larut. Ideal untuk membuat kue, roti, atau makanan tradisional."
     ],
-    formal: [
-        "An exquisite formal creation that speaks the language of luxury. Crafted from premium chiffon or organza, every inch of this ensemble is designed to make a statement — from the rich hand-embellished neckline to the gracefully draped dupatta.",
-        "Ideal for weddings, formal dinners, and cultural celebrations, this suit pairs seamlessly with gold or pearl jewellery. The structured silhouette and fine threadwork elevate it beyond ordinary formalwear."
+    camilan: [
+        "Camilan singkong crispy yang renyah dan gurih, dibuat dari singkong pilihan dengan bumbu rahasia. Snack sehat bebas gluten yang cocok untuk teman nonton film atau bersantai.",
+        "Kemasan 500g praktis, bisa langsung dinikmati atau untuk stok camilan di rumah. Rasa gurih yang pas, tidak berminyak, dan membuat ketagihan."
     ],
-    party: [
-        "Vibrant, glamorous, and unapologetically bold — this party wear suit is made for the woman who lights up every room. The rich embroidery, net fabric, and sequin detailing catch every ray of light, creating a breathtaking effect.",
-        "Designed to stand out at mehndi ceremonies, engagement parties, and festive occasions, this ensemble pairs beautifully with statement earrings and heels. Wear it with confidence and own the night."
-    ],
-    bridal: [
-        "A bridal masterpiece conceived for the most precious chapter of a woman's life. This heavily embellished ensemble features intricate zardozi, resham, and stonework painstakingly crafted by master artisans over many hours.",
-        "From the ornate neckline to the embroidered hem and matching dupatta, every detail is a testament to the highest traditions of South Asian couture. Designed to be treasured — and worn again on the most meaningful occasions."
+    paket: [
+        "Paket hemat berisi 10kg kombinasi produk gluten-free premium. Solusi lengkap untuk kebutuhan rumah tangga dengan harga lebih ekonomis.",
+        "Hemat hingga 30% dibanding beli terpisah. Cocok untuk keluarga besar atau usaha kecil. Produk fresh, berkualitas, dan siap kirim."
     ]
 };
 
@@ -568,7 +540,7 @@ function getParam(key) {
 
 /* ─── Render the detail page ─── */
 function loadProduct() {
-    const id      = getParam('id') || 'lawn1';
+    const id      = getParam('id') || 'tepung1';
     const product = allProducts.find(p => p.id === id) || allProducts[0];
     currentProduct = product;
 
@@ -576,14 +548,14 @@ function loadProduct() {
     const cat     = product.category;
 
     /* DOM updates */
-    document.title                                    = product.name + ' — Libaas Studio';
+    document.title                                    = product.name + ' — Kain & Kasa';
     document.getElementById('breadcrumb-name').textContent = product.name;
     document.getElementById('product-main-img').src   = product.image;
     document.getElementById('product-main-img').alt   = product.alt;
     document.getElementById('product-category').textContent = catLabels[cat] || cat;
     document.getElementById('product-title').textContent    = product.name;
-    document.getElementById('product-price-sale').textContent = 'Rs. ' + product.price.toLocaleString();
-    document.getElementById('product-price-orig').textContent = 'Rs. ' + product.originalPrice.toLocaleString();
+    document.getElementById('product-price-sale').textContent = 'Rp' + product.price.toLocaleString('id-ID');
+    document.getElementById('product-price-orig').textContent = 'Rp' + product.originalPrice.toLocaleString('id-ID');
     document.getElementById('product-save-badge').textContent = 'Save ' + savePct + '%';
 
     /* Category-specific descriptions */
@@ -601,7 +573,7 @@ function loadProduct() {
             </div>
             <div class="related-card-body">
                 <div class="related-card-name">${p.name}</div>
-                <div class="related-card-price">Rs. ${p.price.toLocaleString()}</div>
+                <div class="related-card-price">Rp${p.price.toLocaleString('id-ID')}</div>
             </div>
         </a>`).join('');
 }
@@ -631,10 +603,10 @@ function handleAddToCart() {
 function handleWhatsApp() {
     if (!currentProduct) return;
     const msg  = encodeURIComponent(
-        `Hi, I want to order *${currentProduct.name}* for *Rs. ${currentProduct.price.toLocaleString()} PKR*.\nPlease confirm availability and delivery details. Thank you!`
+        `Hi, I want to order *${currentProduct.name}* for *Rp${currentProduct.price.toLocaleString('id-ID')}*.\\nPlease confirm availability and delivery details. Thank you!`
     );
-    /* Replace 923001234567 with your actual WhatsApp business number */
-    window.open(`https://wa.me/923001234567?text=${msg}`, '_blank');
+    /* Replace 6281234567890 with your actual WhatsApp business number */
+    window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
 }
 
 /* ─── Toast helper ─── */

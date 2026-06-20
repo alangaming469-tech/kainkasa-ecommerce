@@ -1,10 +1,10 @@
-# 🪡 Libaas Studio — Luxury Fashion E-Commerce
+# 🥣 Kain & Kasa — Gluten-Free Food E-Commerce
 
 <div align="center">
 
-![Libaas Studio Banner](image/githubbanner.jpg)
+![Kain & Kasa Banner](image/githubbanner.jpg)
 
-**A premium Pakistani ladies fashion e-commerce website built with pure HTML, Tailwind CSS & Vanilla JavaScript.**
+**A premium gluten-free food e-commerce website built with pure HTML, Tailwind CSS & Vanilla JavaScript.**
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-c9a96e?style=for-the-badge)](https://yourusername.github.io/your-repo-name/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](LICENSE)
@@ -198,7 +198,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ```
 MIT License
 
-Copyright (c) 2024 Libaas Studio
+Copyright (c) 2024 Kain & Kasa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -221,7 +221,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 <div align="center">
 
-Made with ❤️ for Libaas Studio — Karachi, Pakistan
+Made with ❤️ for Kain & Kasa — Karachi, Pakistan
 
 ⭐ Star this repo if you found it helpful!
 
